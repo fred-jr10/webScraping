@@ -3,10 +3,11 @@
 from urllib.request import urlopen
 from urllib.error import HTTPError, URLError
 from bs4 import BeautifulSoup
+import re
 
-def get_content_tag(page):
+def verifica_erro_pagina(page):
     try:
-       html = urlopen(page)
+        html = urlopen(page)
     except HTTPError as e:
         print(e)
     except URLError as e:
@@ -14,8 +15,12 @@ def get_content_tag(page):
     else:
         print('\nProcessando...')
 
+    return html
+
+def get_content_tag(page, tags):
+
 # Usando html.parser
-    bs = BeautifulSoup(html.read(), 'html.parser')
+    bs = BeautifulSoup(tags.read(), 'html.parser')
 
     print('\n')
     print('*' * 100)
@@ -53,7 +58,25 @@ def get_content_tag(page):
     print('*' * 100)
     print('\n')
 
+def mostra_imagens(page, tags):
+    bs = BeautifulSoup(tags.read(), 'html.parser')
+    images = bs.find_all('img', {'src':re.compile('\.\./img\/gifts/img.*\.jpg')})
+
+    print('\n')
+    print('*' * 100)
+    print('Imprimindo relação de imagens')
+    print('-' * 100)
+
+    for image in images:
+        print(image['src'])
+        print('-' * 100)
+
+    print('*' * 100)
+    print('\n')
+
 # Página de teste --> http://www.pythonscraping.com/pages/page3.html
 page = 'http://www.pythonscraping.com/pages/page3.html'
 
-get_content_tag(page)
+tags = verifica_erro_pagina(page)
+# get_content_tag(page, tags)
+mostra_imagens(page, tags)
