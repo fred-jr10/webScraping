@@ -1,46 +1,24 @@
-# Primeiros passos com Web Scraping
+import ScrapLibrary as sl
 
-from urllib.request import urlopen
-from urllib.error import HTTPError, URLError
-from bs4 import BeautifulSoup
 
-def get_content_tag(page, tag):
-    try:
-       html = urlopen(page)
-    except HTTPError as e:
-        print(e)
-    except URLError as e:
-        print('Servidor não encontrado')
-    else:
-        print('\nProcessando...')
+page = 'http://www.pythonscraping.com/pages/page3.html'
+#tag = input('Digite a tag HTML [div/h1/h2/h3/title]: ')
+tags = sl.verifica_erro_pagina(page)
 
-# Usando html.parser
-    bs = BeautifulSoup(html.read(), 'html.parser')
+titulo_pega_conteudo_tags = 'PEGANDO CONTEÚDO DAS TAGS ANINHADAS'
+titulo_pega_tags = 'PEGANDO O CONTEÚDO DA TAG SELECIONADA'
+titulo_mostra_imagens = 'EXIBINDO A LISTA DE IMAGENS DO SITE'
 
-    print('\n')
-    print('*' * 100)
-    print('Usando html.parser')
-    print('-' * 100)
+#sl.imprime_titulo(titulo_pega_conteudo_tags)
+#sl.pega_tags_filho(tags)
+#sl.pega_tags_irmao(tags)
+#sl.pega_tags_descendente(tags)
+#sl.imprime_fecho
 
-    if tag.lower() == 'div':
-        print(bs.div)
-    elif tag.lower() == 'h1':
-        print(bs.h1)
-    elif tag.lower() == 'h2':
-        print(bs.h2)
-    elif tag.lower() == 'h3':
-        print(bs.h3)
-    elif tag.lower() == 'title':
-        print(bs.title)
-    else:
-        print('Tag inválida!')
+#sl.imprime_titulo(titulo_pega_conteudo_tags)
+#sl.pega_conteudo_tags(tag, tags)
+#sl.imprime_fecho
 
-    print('-' * 100)
-    print('*' * 100)
-    print('\n')
-
-# Página de teste --> http://www.pythonscraping.com/pages/page1.html
-page = input('Digite o endereço da página web: ')
-tag = input('Digite a tag HTML [div/h1/h2/h3/title]: ')
-
-get_content_tag(page, tag)
+sl.imprime_titulo(titulo_mostra_imagens)
+sl.mostra_imagens(tags)
+sl.imprime_fecho
