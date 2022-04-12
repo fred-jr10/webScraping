@@ -1,7 +1,9 @@
-import ScrapLibrary as sl
+import scrapLibrary as sl
 
+#Página de teste1 --> 'http://www.pythonscraping.com/pages/page3.html'
+#Página de teste 2 --> ''
 
-page = 'http://www.pythonscraping.com/pages/page3.html'
+page = input('Digite a página a ser explorada: ')
 #tag = input('Digite a tag HTML [div/h1/h2/h3/title]: ')
 tags = sl.verifica_erro_pagina(page)
 
