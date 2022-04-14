@@ -7,13 +7,13 @@ import re
 
 def imprime_titulo(titulo):
     print('\n')
-    print('*' * 100)
+    print('▓' * 100)
     print(titulo)
-    print('-' * 100)
+    print('▒' * 100)
 
 def imprime_fecho():
-    print('-' * 100)
-    print('*' * 100)
+    print('▒' * 100)
+    print('▓' * 100)
     print('\n')
 
 def verifica_erro_pagina(page):
